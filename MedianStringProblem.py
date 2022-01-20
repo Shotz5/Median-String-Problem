@@ -13,8 +13,8 @@ def main():
             print("First line of file does not contain a parseable integer, please check file and try again.")
             exit()
 
-        dna_string = input_1.readline()
-        dna_list = re.split("\s", dna_string)
+        dna_string = input_1.read()
+        dna_list = re.split("[\s\n]", dna_string)
 
         #Have k-mer and list of DNA, now need to iterate through all possible patterns of length k
         letters = ["A", "C", "G", "T"]
@@ -39,12 +39,13 @@ def d(k_mer, dna):
         current_lowest_distance = -1
         current_distance = 0
         for i in range(len(dna_portion) - len(k_mer) + 1):
+            current_distance = 0
             for j in range(len(k_mer)):
                 if (k_mer[j] != dna_portion[i + j]):
                     current_distance += 1
-
-        if current_distance < current_lowest_distance or current_lowest_distance == -1:
-            current_lowest_distance = current_distance
+            
+            if current_distance < current_lowest_distance or current_lowest_distance == -1:
+                current_lowest_distance = current_distance
 
         # Error handling for if current_lowest_distance doesn't update
         if current_lowest_distance < 0:
