@@ -30,14 +30,13 @@ def main():
         if best_k_mer.isNull():
             print("Something went wrong, Best_K_Mer was not updated.")
         else:
-            print(best_k_mer.dna)
+            print("".join(best_k_mer.dna))
 
 # Method that calculates the minimum distance for each DNA portion, and returns the sum of the distances
 def d(k_mer, dna):
     total_distance = 0
     for dna_portion in dna:
         current_lowest_distance = -1
-        current_distance = 0
         for i in range(len(dna_portion) - len(k_mer) + 1):
             current_distance = 0
             for j in range(len(k_mer)):
